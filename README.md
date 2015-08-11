@@ -1,2 +1,6 @@
-# pdf-rock-and-roll
+# PDF ROCK AND ROLL!!!
+
 PDF generator
+
+
+.ejs + json = PDF
