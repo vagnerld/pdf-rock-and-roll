@@ -16,21 +16,28 @@ app.controller('CodeMirror', ['$scope', '$http', '$sce', function($scope, $http,
         theme: "monokai"
     };
 
-    // Initial code content template...
-    $scope.template =   "<meta charset=\"utf8\">\n"+
-                        "<h2>Title</h2>\n"+
-                        "<table style=\"width:50%;border-style:solid; text-align:left;\">\n"+
-                        "   <tr>\n"+
-                        "       <th>Name</th>\n"+
-                        "       <th>Country</th>\n"+
-                        "    </tr>\n"+
-                        "    {{#each persons}}\n"+
-                        "        <tr>\n"+
-                        "            <td>{{name}}</td>\n"+
-                        "            <td>{{country}}</td>\n"+
-                        "        </tr>\n"+
-                        "    {{/each}}\n"+
-                        "</table>";
+     // Initial code content template...
+     $scope.template =   "<html>\n"+
+                         "    <head>\n"+
+                         "        <meta charset=\"utf8\" />\n"+
+                         "        <link href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css\" rel=\"stylesheet\">\n"+
+                         "    </head>\n"+
+                         "    <body>\n"+
+                         "        <h1>Title</h1>\n"+
+                         "        <table class=\"table table-bordered\">\n"+
+                         "            <tr>\n"+
+                         "                <th>Name</th>\n"+
+                         "                <th>Country</th>\n"+
+                         "            </tr>\n"+
+                         "            {{#each persons}}\n"+
+                         "                <tr>\n"+
+                         "                    <td>{{name}}</td>\n"+
+                         "                    <td>{{country}}</td>\n"+
+                         "                </tr>\n"+
+                         "            {{/each}}\n"+
+                         "        </table>\n"+
+                         "    </body>\n"+
+                         "</html>";
 
     // Initial code content data...
     $scope.data =   "{\n"+
@@ -64,7 +71,7 @@ app.controller('CodeMirror', ['$scope', '$http', '$sce', function($scope, $http,
             "data": $scope.data
         };
 
-        $http.post('https://jsreportonline.net/api/report',myParams, {responseType:'arraybuffer'})
+        $http.post('https://playground.jsreport.net/api/report',myParams, {responseType:'arraybuffer'})
             .success(function (response) {
                 var file = new Blob([response], {type: 'application/pdf'});
                 var fileURL = URL.createObjectURL(file);
